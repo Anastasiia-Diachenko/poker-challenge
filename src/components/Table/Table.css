@@ -1,0 +1,15 @@
+.table {
+  display: flex;
+  align-items: center;
+  height: 300px;
+  width: 600px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: green;
+  border: 22px solid #7a1919;
+  border-radius: 122px;
+}
