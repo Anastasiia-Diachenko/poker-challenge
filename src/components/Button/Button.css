@@ -1,0 +1,14 @@
+.button {
+  height: 56px;
+  width: 200px;
+  margin-right: 42px;
+  margin-left: 42px;
+  
+  background: whitesmoke;
+  cursor: pointer;
+}
+  
+.buttonText {
+  font-size: 22px;
+  letter-spacing: 1px;
+}
