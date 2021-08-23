@@ -24,3 +24,9 @@
 .mr {
   margin-right: 32px;
 }
+
+.winner-title {
+  margin-top: 12px;
+  font-size: 38px;
+  color: white;
+}

@@ -8,10 +8,10 @@ import "./App.css";
 
 const App = () => {
   const [isShown, setIsShown] = useState(false);
-
-  const showCards = () => {
-    setIsShown(!isShown);
-  };
+  const [randoms1, setRandoms1] = useState([]);
+  const [randoms2, setRandoms2] = useState([]);
+  const [isWinner1, setIsWinner1] = useState(false);
+  const [isWinner2, setIsWinner2] = useState(false);
 
   const suits = ["Hearts", "Diamonds", "Spades", "Clubs"];
   const cardValues = [
@@ -44,8 +44,6 @@ const App = () => {
   };
 
   const cards = makeRandomCards();
-  const randoms1 = [];
-  const randoms2 = [];
 
   const randomCard = (cards, arr) => {
     const random = Math.floor(Math.random() * 51);
@@ -71,19 +69,56 @@ const App = () => {
 
   const generateCards = () => {
     console.log(randoms1, randoms2);
-  }
+  };
+
+  const getWinner = () => {
+    const uniqueValuesFirstHand = new Set(randoms1.map((v) => v.cardValue));
+    const uniqueValuesSecondHand = new Set(randoms2.map((v) => v.cardValue));
+
+    console.log(uniqueValuesFirstHand, uniqueValuesSecondHand);
+
+    if (uniqueValuesFirstHand.size < uniqueValuesSecondHand.size) {
+      setIsWinner1(true);
+    }
+
+    if (uniqueValuesFirstHand.size > uniqueValuesSecondHand.size) {
+      setIsWinner2(true);
+    }
+
+    if (uniqueValuesFirstHand.size === uniqueValuesSecondHand.size) {
+      return;
+    }
+  };
+
+  const showCards = () => {
+    setIsShown(!isShown);
+    getWinner();
+  };
 
   return (
     <div className="App">
       <div className="cards-container">
         {isShown && (
           <div className="card-container ml">
-            {randoms1.map((random) => (
-              <Card value={random.cardValue} suite={random.entity} />
+            {randoms1.slice(0, 5).map((random, i) => (
+              <Card
+                key={i}
+                value={random.cardValue}
+                suite={random.entity}
+                winner={isWinner1 ? "winner" : ""}
+              />
             ))}
           </div>
         )}
       </div>
+      {isShown && (
+        <p className="winner-title">
+          WINNER:{" "}
+          {(isWinner1 ? 1 : "") ||
+            (isWinner2 ? 2 : "") ||
+            (!isWinner1 && !isWinner2 ? "DRAW" : "")}
+        </p>
+      )}
       <Table>
         <Button
           className="button"
@@ -98,8 +133,13 @@ const App = () => {
       </Table>
       {isShown && (
         <div className="card-container mr">
-          {randoms2.map((random) => (
-            <Card value={random.cardValue} suite={random.entity} />
+          {randoms2.slice(0, 5).map((random, i) => (
+            <Card
+              key={i}
+              value={random.cardValue}
+              suite={random.entity}
+              winner={isWinner2 ? "winner" : ""}
+            />
           ))}
         </div>
       )}

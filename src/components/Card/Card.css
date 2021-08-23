@@ -9,3 +9,8 @@
   border: 2px solid black;
   border-radius: 6px;
 }
+
+.winner {
+  border-width: 4px;
+  border-color: red;
+}
