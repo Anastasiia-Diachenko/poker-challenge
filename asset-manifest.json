@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/poker-challenge/static/css/main.65054c13.chunk.css",
+    "main.js": "/poker-challenge/static/js/main.9e9af5a9.chunk.js",
+    "main.js.map": "/poker-challenge/static/js/main.9e9af5a9.chunk.js.map",
+    "runtime-main.js": "/poker-challenge/static/js/runtime-main.c6bce5c2.js",
+    "runtime-main.js.map": "/poker-challenge/static/js/runtime-main.c6bce5c2.js.map",
+    "static/js/2.ea36af34.chunk.js": "/poker-challenge/static/js/2.ea36af34.chunk.js",
+    "static/js/2.ea36af34.chunk.js.map": "/poker-challenge/static/js/2.ea36af34.chunk.js.map",
+    "static/js/3.66d442fa.chunk.js": "/poker-challenge/static/js/3.66d442fa.chunk.js",
+    "static/js/3.66d442fa.chunk.js.map": "/poker-challenge/static/js/3.66d442fa.chunk.js.map",
+    "index.html": "/poker-challenge/index.html",
+    "static/css/main.65054c13.chunk.css.map": "/poker-challenge/static/css/main.65054c13.chunk.css.map",
+    "static/js/2.ea36af34.chunk.js.LICENSE.txt": "/poker-challenge/static/js/2.ea36af34.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/poker-challenge/static/media/poker-background.5b3f6832.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c6bce5c2.js",
+    "static/js/2.ea36af34.chunk.js",
+    "static/css/main.65054c13.chunk.css",
+    "static/js/main.9e9af5a9.chunk.js"
+  ]
+}
