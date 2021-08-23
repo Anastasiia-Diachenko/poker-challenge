@@ -3,11 +3,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   height: 86px;
   width: 56px;
   margin-bottom: 22px;
+
   border: 2px solid black;
   border-radius: 6px;
+
+  transition: transform 0.3s linear;
+}
+
+.card:hover {
+  transform: scale(1.1);
 }
 
 .winner {

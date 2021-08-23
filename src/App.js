@@ -59,15 +59,16 @@ const App = () => {
     return arr.push({ cardValue, entity });
   };
 
-  Array.from(Array(5)).forEach(() => {
-    randomCard(cards, randoms1);
-  });
-
-  Array.from(Array(5)).forEach(() => {
-    randomCard(cards, randoms2);
-  });
-
   const generateCards = () => {
+    Array.from(Array(5)).forEach(() => {
+      randomCard(cards, randoms1);
+    });
+
+    Array.from(Array(5)).forEach(() => {
+      randomCard(cards, randoms2);
+    });
+
+    setIsShown(false);
     console.log(randoms1, randoms2);
   };
 
@@ -95,6 +96,14 @@ const App = () => {
     getWinner();
   };
 
+  const resetCards = () => {
+    setRandoms1([]);
+    setRandoms2([]);
+    setIsWinner1(false);
+    setIsWinner2(false);
+    setIsShown(!isShown);
+  };
+
   return (
     <div className="App">
       <div className="cards-container">
@@ -112,25 +121,27 @@ const App = () => {
         )}
       </div>
       {isShown && (
-        <p className="winner-title">
+        <span className="winner-title">
           WINNER:{" "}
-          {(isWinner1 ? 1 : "") ||
-            (isWinner2 ? 2 : "") ||
-            (!isWinner1 && !isWinner2 ? "DRAW" : "")}
-        </p>
+          {(isWinner1 ? '1 PLAYER' : "") ||
+            (isWinner2 ? '2 PLAYER' : "") ||
+            (!isWinner1 && !isWinner2 ? "DRAW" : "") ||
+            null}
+        </span>
       )}
       <Table>
         <Button
           className="button"
-          buttonName="Generate cards"
+          buttonName="Generate Cards"
           onClick={generateCards}
         />
         <Button
           className="button"
-          buttonName="Show cards"
+          buttonName="Show Cards"
           onClick={showCards}
         />
       </Table>
+      <Button className="button button-center" buttonName="NEW GAME" onClick={resetCards} />
       {isShown && (
         <div className="card-container mr">
           {randoms2.slice(0, 5).map((random, i) => (
