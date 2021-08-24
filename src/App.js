@@ -92,8 +92,6 @@ const App = () => {
         sortedRandomsSecond[i + 1].pair = true;
       }
     }
-
-    console.log(sortedRandomsFirst, sortedRandomsSecond);
   };
 
   findPairs();
