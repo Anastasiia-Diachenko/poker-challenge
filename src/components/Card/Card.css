@@ -22,3 +22,8 @@
   border-width: 4px;
   border-color: red;
 }
+
+.pair {
+  border-width: 7px;
+  border-color: green;
+}
