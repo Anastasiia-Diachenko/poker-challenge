@@ -56,7 +56,7 @@ const App = () => {
     if (cardSuit === "Spades") entity = <GiSpades />;
     if (cardSuit === "Clubs") entity = <GiClubs />;
 
-    return arr.push({ cardValue, entity });
+    return arr.push({ cardValue, entity, pair: false });
   };
 
   const generateCards = () => {
@@ -72,11 +72,35 @@ const App = () => {
     console.log(randoms1, randoms2);
   };
 
+  let sortedRandomsFirst;
+  let sortedRandomsSecond;
+
+  const findPairs = () => {
+    sortedRandomsFirst = randoms1.sort((a, b) => a.cardValue.localeCompare(b.cardValue));
+    sortedRandomsSecond = randoms2.sort((a, b) => a.cardValue.localeCompare(b.cardValue));
+
+    for (let i = 0; i < sortedRandomsFirst.length - 1; i++) {
+      if (sortedRandomsFirst[i].cardValue === sortedRandomsFirst[i + 1].cardValue) {
+        sortedRandomsFirst[i].pair = true;
+        sortedRandomsFirst[i + 1].pair = true;
+      }
+    }
+
+    for (let i = 0; i < sortedRandomsSecond.length - 1; i++) {
+      if (sortedRandomsSecond[i].cardValue === sortedRandomsSecond[i + 1].cardValue) {
+        sortedRandomsSecond[i].pair = true;
+        sortedRandomsSecond[i + 1].pair = true;
+      }
+    }
+
+    console.log(sortedRandomsFirst, sortedRandomsSecond);
+  };
+
+  findPairs();
+
   const getWinner = () => {
     const uniqueValuesFirstHand = new Set(randoms1.map((v) => v.cardValue));
     const uniqueValuesSecondHand = new Set(randoms2.map((v) => v.cardValue));
-
-    console.log(uniqueValuesFirstHand, uniqueValuesSecondHand);
 
     if (uniqueValuesFirstHand.size < uniqueValuesSecondHand.size) {
       setIsWinner1(true);
@@ -109,12 +133,13 @@ const App = () => {
       <div className="cards-container">
         {isShown && (
           <div className="card-container ml">
-            {randoms1.slice(0, 5).map((random, i) => (
+            {sortedRandomsFirst.slice(0, 5).map((random, i) => (
               <Card
                 key={i}
                 value={random.cardValue}
                 suite={random.entity}
                 winner={isWinner1 ? "winner" : ""}
+                pair={random.pair ? "pair" : ""}
               />
             ))}
           </div>
@@ -123,31 +148,30 @@ const App = () => {
       {isShown && (
         <span className="winner-title">
           WINNER:{" "}
-          {(isWinner1 ? 'PLAYER 1' : "") ||
-            (isWinner2 ? 'PLAYER 2' : "") ||
+          {(isWinner1 ? "PLAYER 1" : "") ||
+            (isWinner2 ? "PLAYER 2" : "") ||
             (!isWinner1 && !isWinner2 ? "DRAW" : "") ||
             null}
         </span>
       )}
       <Table>
-        <Button
-          buttonName="Generate Cards"
-          onClick={generateCards}
-        />
-        <Button
-          buttonName="Show Cards"
-          onClick={showCards}
-        />
+        <Button buttonName="Generate Cards" onClick={generateCards} />
+        <Button buttonName="Show Cards" onClick={showCards} />
       </Table>
-      <Button className="button-center" buttonName="NEW GAME" onClick={resetCards} />
+      <Button
+        className="button-center"
+        buttonName="NEW GAME"
+        onClick={resetCards}
+      />
       {isShown && (
         <div className="card-container mr">
-          {randoms2.slice(0, 5).map((random, i) => (
+          {sortedRandomsSecond.slice(0, 5).map((random, i) => (
             <Card
               key={i}
               value={random.cardValue}
               suite={random.entity}
               winner={isWinner2 ? "winner" : ""}
+              pair={random.pair ? "pair" : ""}
             />
           ))}
         </div>
