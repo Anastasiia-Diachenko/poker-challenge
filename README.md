@@ -1,7 +1,7 @@
 1. Project Title
 
 Poker challenge
-DEMO LINK: https://anastasiia-diachenko.github.io/stopwatch/
+DEMO LINK: https://anastasiia-diachenko.github.io/poker-challenge/
 
 2. Description
 
