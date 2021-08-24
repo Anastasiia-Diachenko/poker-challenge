@@ -123,25 +123,23 @@ const App = () => {
       {isShown && (
         <span className="winner-title">
           WINNER:{" "}
-          {(isWinner1 ? '1 PLAYER' : "") ||
-            (isWinner2 ? '2 PLAYER' : "") ||
+          {(isWinner1 ? 'PLAYER 1' : "") ||
+            (isWinner2 ? 'PLAYER 2' : "") ||
             (!isWinner1 && !isWinner2 ? "DRAW" : "") ||
             null}
         </span>
       )}
       <Table>
         <Button
-          className="button"
           buttonName="Generate Cards"
           onClick={generateCards}
         />
         <Button
-          className="button"
           buttonName="Show Cards"
           onClick={showCards}
         />
       </Table>
-      <Button className="button button-center" buttonName="NEW GAME" onClick={resetCards} />
+      <Button className="button-center" buttonName="NEW GAME" onClick={resetCards} />
       {isShown && (
         <div className="card-container mr">
           {randoms2.slice(0, 5).map((random, i) => (
